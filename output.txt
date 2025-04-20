@@ -1,0 +1,120 @@
+(base) dummyUser@dummyUsers-MacBook-Air 3_Multi_Agent_System % python main.py
+/Users/dummyUser/anaconda3/lib/python3.11/site-packages/langchain/chat_models/__init__.py:33: LangChainDeprecationWarning: Importing chat models from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.chat_models import ChatOpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/Users/dummyUser/anaconda3/lib/python3.11/site-packages/langchain/chat_models/__init__.py:33: LangChainDeprecationWarning: Importing chat models from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.chat_models import ChatOpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/Users/dummyUser/Documents/Learning/AgenticAI/3_Multi_Agent_System/main.py:3: LangChainDeprecationWarning: Importing get_openai_callback from /Users/dummyUser/anaconda3/lib/python3.11/site-packages/langchain/callbacks/__init__.py is deprecated. Please replace deprecated imports:
+
+>> from /Users/dummyUser/anaconda3/lib/python3.11/site-packages/langchain/callbacks/__init__.py import get_openai_callback
+
+with new imports of:
+
+>> from langchain_community.callbacks.manager import get_openai_callback
+You can use the langchain cli to **automatically** upgrade many imports. Please see documentation here <https://python.langchain.com/docs/versions/v0_2/>
+  from langchain.callbacks import get_openai_callback
+/Users/dummyUser/Documents/Learning/AgenticAI/3_Multi_Agent_System/main.py:6: LangChainDeprecationWarning: The class `ChatOpenAI` was deprecated in LangChain 0.0.10 and will be removed in 1.0. An updated version of the class exists in the :class:`~langchain-openai package and should be used instead. To use it run `pip install -U :class:`~langchain-openai` and import as `from :class:`~langchain_openai import ChatOpenAI``.
+  llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo",
+📌 User Request: Write a function to check if a number is prime
+
+🔧 Step 1: Planning the task...
+/Users/dummyUser/Documents/Learning/AgenticAI/3_Multi_Agent_System/main.py:15: LangChainDeprecationWarning: The method `BaseChatModel.__call__` was deprecated in langchain-core 0.1.7 and will be removed in 1.0. Use :meth:`~invoke` instead.
+  response = llm(messages).content
+Implementation steps:
+1. Define a function named `is_prime` that takes an integer parameter `num`.
+2. Check if `num` is less than 2, return False as prime numbers are greater than 1.
+3. Iterate from 2 to the square root of `num` (rounded up to the nearest integer) using a for loop.
+4. Check if `num` is divisible by any number in the range of 2 to the square root of `num`. If it is, return False as it is not a prime number.
+5. If the loop completes without finding any divisors, return True as `num` is a prime number.
+
+💻 Step 2: Generating code...
+Here is the implementation of the `is_prime` function in Python:
+
+```python
+import math
+
+def is_prime(num):
+    if num < 2:
+        return False
+
+    for i in range(2, math.isqrt(num) + 1):
+        if num % i == 0:
+            return False
+
+    return True
+
+# Test the function
+num = 17
+if is_prime(num):
+    print(f"{num} is a prime number.")
+else:
+    print(f"{num} is not a prime number.")
+```
+
+You can test the `is_prime` function by passing different integer values to check if they are prime numbers or not.
+
+🧐 Step 3: Reviewing code...
+The `is_prime` function looks correct and should work as expected. Here are a few suggestions for improvement:
+
+1. **Optimization**: Instead of iterating up to `math.isqrt(num) + 1`, you can iterate up to `math.isqrt(num) + 1` and step by 2 to check only odd numbers. This can reduce the number of iterations by half for large numbers.
+
+2. **Input Validation**: The function currently handles the case when `num < 2` by returning `False`. You may also want to handle the case when `num` is not an integer or is negative.
+
+3. **Documentation**: Adding docstrings to the function can help other developers understand its purpose and usage.
+
+Here is an updated version of the function incorporating the suggestions:
+
+```python
+import math
+
+def is_prime(num):
+    """
+    Check if a number is prime.
+
+    Args:
+        num (int): The number to check for primality.
+
+    Returns:
+        bool: True if the number is prime, False otherwise.
+    """
+    if not isinstance(num, int) or num < 2:
+        return False
+
+    if num == 2:
+        return True
+
+    if num % 2 == 0:
+        return False
+
+    for i in range(3, math.isqrt(num) + 1, 2):
+        if num % i == 0:
+            return False
+
+    return True
+
+# Test the function
+num = 17
+if is_prime(num):
+    print(f"{num} is a prime number.")
+else:
+    print(f"{num} is not a prime number.")
+```
+
+These improvements enhance the readability, efficiency, and robustness of the function.
+
+📊 Token Usage Summary:
+Tokens Used: 997
+	Prompt Tokens: 372
+		Prompt Tokens Cached: 0
+	Completion Tokens: 625
+		Reasoning Tokens: 0
+Successful Requests: 3
+Total Cost (USD): $0.0018080000000000001
+(base) dummyUser@dummyUsers-MacBook-Air 3_Multi_Agent_System % 
